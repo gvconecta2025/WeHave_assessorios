@@ -9,7 +9,7 @@
 <body>
     <header class="topbar">
         <div class="logo">🎯 CRM Interno | Inteligência de Mercado</div>
-        <a href="index.html" class="btn-voltar">⬅️ Voltar à Webloja</a>
+        <a href="https://wehavegv.vercel.app" class="btn-voltar">⬅️ Voltar à Webloja</a>
     </header>
 
     <main class="crm-container">
@@ -31,8 +31,6 @@
                     <textarea id="detalhes" placeholder="Ex: Cliente queria a cor azul, material de silicone..."></textarea>
                 </div>
                 
-                <!-- Data, Hora e Dia da Semana serão capturados silenciosamente pelo JS -->
-                
                 <div class="form-actions">
                     <button type="submit" class="btn-salvar" id="btnSalvarDemanda">Registrar Interesse no Radar</button>
                     <button type="button" class="btn-secundario" id="btnCancelarEdicao" style="display: none;">Cancelar Edição</button>
@@ -41,12 +39,12 @@
             </form>
 
             <div class="metricas-container">
-                <h3>📊 Métricas de Repetição</h3>
+                <h3>📊 Linha do Tempo de Demandas</h3>
                 <div class="filtros-metricas">
                     <input type="text" id="buscaMetrica" placeholder="Filtrar demandas...">
                 </div>
                 <div id="listaDemandas" class="lista-demandas">
-                    <!-- O JavaScript injetará os cards aqui -->
+                    <!-- O JavaScript injetará a Timeline aqui -->
                     <p style="text-align:center; color:#888; padding: 20px;">Carregando registros do Firestore...</p>
                 </div>
             </div>
@@ -68,7 +66,6 @@
                     <label>Template Pré-escrito</label>
                     <select id="zapTemplate">
                         <option value="">-- Mensagem Avulsa (Digitar abaixo) --</option>
-                        <!-- O JavaScript injetará os templates aqui -->
                     </select>
                 </div>
                 
@@ -100,18 +97,14 @@
         </section>
     </main>
 
-    <!-- Modal Auxiliar: Histórico de Edições -->
     <div id="modalHistorico" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="fecharModalHistorico()">&times;</span>
             <h2 style="margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 10px;">Histórico de Mudanças</h2>
-            <div id="conteudoHistorico" class="historico-lista">
-                <!-- O log de auditoria injetado via JS -->
-            </div>
+            <div id="conteudoHistorico" class="historico-lista"></div>
         </div>
     </div>
 
-    <!-- Motor JavaScript do CRM (A ser entregue na Parte 2) -->
     <script type="module" src="crm.js"></script>
 </body>
 </html>
