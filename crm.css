@@ -96,7 +96,7 @@ body {
     padding-bottom: 20px;
 }
 
-/* FORMULÁRIOS RESTAURADOS COM ESTÉTICA MODERNA */
+/* FORMULÁRIOS */
 .form-crm .form-group {
     margin-bottom: 20px;
 }
@@ -205,7 +205,7 @@ body {
     background: #cbd5e1;
 }
 
-/* PAINEL DE MÉTRICAS */
+/* CONTAINER DE MÉTRICAS & FILTROS */
 .metricas-container {
     margin-top: 40px;
     flex-grow: 1;
@@ -221,7 +221,7 @@ body {
 }
 
 .filtros-metricas {
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 .filtros-metricas input {
@@ -239,13 +239,17 @@ body {
     background: #fff;
 }
 
+/* ====================================================
+   🔥 NOVO: ENGENHARIA DA TIMELINE VERTICAL
+   ==================================================== */
+
 .lista-demandas {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-height: 500px;
+    position: relative;
+    max-height: 550px;
     overflow-y: auto;
+    padding-left: 20px; /* Espaço para a linha central */
     padding-right: 10px;
+    padding-top: 10px;
 }
 
 .lista-demandas::-webkit-scrollbar {
@@ -256,28 +260,82 @@ body {
     border-radius: 10px;
 }
 
+/* A Linha mestre da Timeline que corta todos os itens */
+.lista-demandas::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 27px; /* Centralizada com o ícone */
+    width: 2px;
+    background: #e2e8f0;
+    z-index: 1;
+}
+
+/* Cada Ponto/Nó da Timeline */
+.timeline-item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    /* O margin-bottom será injetado inline via JS para criar o espaçamento temporal */
+    z-index: 2; 
+}
+
+/* O Ícone (Bolinha) da Timeline */
+.timeline-icon {
+    width: 16px;
+    height: 16px;
+    background: var(--primary);
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--primary);
+    margin-top: 5px; /* Alinha com a primeira linha do texto */
+    margin-right: 20px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 3;
+}
+
+/* O Conteúdo do Card dentro da Timeline */
 .demanda-card {
     background: #fff;
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 20px;
+    padding: 16px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     transition: 0.2s;
+    flex-grow: 1;
+    position: relative;
+}
+
+/* Setinha apontando do card para a linha */
+.demanda-card::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: -6px;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    transform: rotate(45deg);
 }
 
 .demanda-card:hover {
     border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
 }
 
 .demanda-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .demanda-interesse {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 900;
     color: var(--text-dark);
 }
@@ -286,16 +344,16 @@ body {
     background: var(--primary);
     color: white;
     font-weight: 900;
-    padding: 6px 12px;
+    padding: 4px 10px;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 12px;
     box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
 }
 
 .demanda-detalhes {
     font-size: 14px;
     color: var(--text-muted);
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     line-height: 1.5;
 }
 
@@ -303,11 +361,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid var(--border);
-    padding-top: 12px;
-    font-size: 13px;
+    border-top: 1px dashed var(--border);
+    padding-top: 10px;
+    font-size: 12px;
     color: var(--text-muted);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .demanda-acoes {
@@ -318,10 +376,10 @@ body {
 .btn-acao {
     background: none;
     border: none;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 800;
     cursor: pointer;
-    padding: 6px 10px;
+    padding: 4px 8px;
     border-radius: 6px;
     transition: 0.2s;
 }
